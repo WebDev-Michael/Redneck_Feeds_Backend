@@ -9,6 +9,16 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb+srv://WebDev-Michael:anN7H33AohuZiIkQ@cluster0.xrzyk.mongodb.net/', {useNewUrlParser: true, useUnifiedTopology: true})
+
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+db.once('open', () => {
+  console.log('Connected to MongoDB')
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
